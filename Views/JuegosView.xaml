@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="ProyectoJuegos.Views.JuegosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:ProyectoJuegos.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding CargarJuegosCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
+    <Grid Background="LightGray" Height="450" Width="800">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Background="AliceBlue">
+            <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Width="200" Text="{Binding Juego.Nombre}"/>
+            <TextBlock Text="Descripcion" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Width="200" Text="{Binding Juego.Descripcion}"/>
+            <TextBlock Text="PRECIO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Width="200" Text="{Binding Juego.Precio}"/>
+            <TextBlock Text="STOCK" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Width="200" Text="{Binding Juego.Stock}"/>
+            <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DatePicker Width="200" SelectedDate="{Binding Juego.FechaLanzamiento}"/>
+            <TextBlock Text="CODIGO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Width="200" Text="{Binding Juego._id}"/>
+            <Button Content="CREAR" Width="200" Margin="0,10" Command="{Binding CrearJuegoCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+
+
+            <ListView x:Name="juegosListView" ItemsSource="{Binding ListaJuegos}" MaxHeight="400" >
+
+                
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="DNI" DisplayMemberBinding="{Binding Path=_id}"/>
+                        <GridViewColumn Header="NOMBRE" DisplayMemberBinding="{Binding Path=Nombre}"/>
+                        <GridViewColumn Header="FECHA NACIMIENTO" DisplayMemberBinding="{Binding Path=Fecha}"/>
+                        <GridViewColumn Header="CURSO" DisplayMemberBinding="{Binding Path=Curso}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</UserControl>

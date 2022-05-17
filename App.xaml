@@ -1,0 +1,24 @@
+﻿<Application x:Class="ProyectoJuegos.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ProyectoJuegos"
+             xmlns:views="clr-namespace:ProyectoJuegos.Views"
+             xmlns:viewmodels="clr-namespace:ProyectoJuegos.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewmodels:ResumenViewModel}">
+                <views:ResumenView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:JuegosViewModel}">
+                <views:JuegosView/>
+            </DataTemplate>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>
