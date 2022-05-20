@@ -1,4 +1,5 @@
-﻿using ProyectoJuegos.Services;
+﻿using ProyectoJuegos.Models;
+using ProyectoJuegos.Services;
 using ProyectoJuegos.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,15 @@ namespace ProyectoJuegos.Commands
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            DBHandler.InsertarJuego(JuegosViewModel.Juego);
+            bool okinsertar = await DBHandler.InsertarJuego(JuegosViewModel.Juego);
+            if (okinsertar)
+            {
+                MessageBox.Show("Juego insertado con éxito");
+                JuegosViewModel.Juego = new JuegoModel();
+                JuegosViewModel.CargarJuegosCommand.Execute("");
+            }
             //DBHandler.ObtenerJuegos("all");
         }
 

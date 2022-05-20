@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:ProyectoJuegos.Views"
              mc:Ignorable="d" 
+             x:Name="vistajuegos"
              d:DesignHeight="450" d:DesignWidth="800">
 
     <i:Interaction.Triggers>
@@ -25,33 +26,59 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Background="AliceBlue">
-            <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Width="200" Text="{Binding Juego.Nombre}"/>
-            <TextBlock Text="Descripcion" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Width="200" Text="{Binding Juego.Descripcion}"/>
-            <TextBlock Text="PRECIO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Width="200" Text="{Binding Juego.Precio}"/>
-            <TextBlock Text="STOCK" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Width="200" Text="{Binding Juego.Stock}"/>
-            <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DatePicker Width="200" SelectedDate="{Binding Juego.FechaLanzamiento}"/>
-            <TextBlock Text="CODIGO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Width="200" Text="{Binding Juego._id}"/>
-            <Button Content="CREAR" Width="200" Margin="0,10" Command="{Binding CrearJuegoCommand}"/>
+            <StackPanel x:Name="datosDialogo">
+                <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding Juego.Nombre}"/>
+                <TextBlock Text="Descripcion" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding Juego.Descripcion}"/>
+                <TextBlock Text="PRECIO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding Juego.Precio}"/>
+                <TextBlock Text="STOCK" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Width="200" Text="{Binding Juego.Stock}"/>
+                <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <DatePicker Width="200" SelectedDate="{Binding Juego.FechaLanzamiento}"/>
+                <TextBlock Text="CODIGO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox x:Name="txCodigo" Width="200" Text="{Binding Juego._id}"/>
+            </StackPanel>
+            
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCrear"  Content="CREAR" Width="200" Margin="5,10" Command="{Binding CrearJuegoCommand}"/>
+                <Button x:Name="btnModificar" Content="MODIFICAR" Width="200" Margin="5,10" Command="{Binding ModificarJuegoCommand}" Click="btnModificar_Click"/>
+                <Button x:Name="btnCancelar" 
+                        Content="CANCELAR" 
+                        Width="200" 
+                        Margin="5,10" 
+                        Command="{Binding CancelarCommand}"
+                        CommandParameter="{Binding ElementName=vistajuegos}"/>
+
+                <Button x:Name="btnAceptar" 
+                        Content="ACEPTAR" 
+                        Width="200" 
+                        Margin="5,10" 
+                        Command="{Binding ActualizarJuegoCommand}"
+                        CommandParameter="{Binding ElementName=vistajuegos}"/>
+
+
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="1">
 
+            <ListView x:Name="juegosListView" ItemsSource="{Binding ListaJuegos}" MaxHeight="400"
+                      SelectedItem="{Binding JuegoCurrent}">
 
-            <ListView x:Name="juegosListView" ItemsSource="{Binding ListaJuegos}" MaxHeight="400" >
-
-                
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding LoadJuegoCommand}" CommandParameter="{Binding ElementName=vistajuegos}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="DNI" DisplayMemberBinding="{Binding Path=_id}"/>
+                        <GridViewColumn Header="REF" DisplayMemberBinding="{Binding Path=_id}"/>
                         <GridViewColumn Header="NOMBRE" DisplayMemberBinding="{Binding Path=Nombre}"/>
-                        <GridViewColumn Header="FECHA NACIMIENTO" DisplayMemberBinding="{Binding Path=Fecha}"/>
-                        <GridViewColumn Header="CURSO" DisplayMemberBinding="{Binding Path=Curso}"/>
+                        <GridViewColumn Header="DESCRIPCION" DisplayMemberBinding="{Binding Path=Descripcion}"/>
+                        <GridViewColumn Header="PRECIO" DisplayMemberBinding="{Binding Path=Precio}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

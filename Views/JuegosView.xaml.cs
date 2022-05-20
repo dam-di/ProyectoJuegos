@@ -23,6 +23,47 @@ namespace ProyectoJuegos.Views
         public JuegosView()
         {
             InitializeComponent();
+            E00Inicial();
+        }
+
+        public void E00Inicial()
+        {
+            btnCancelar.Visibility = Visibility.Collapsed;
+            btnModificar.Visibility = Visibility.Collapsed;
+            btnCrear.Visibility = Visibility.Visible;
+            btnAceptar.Visibility = Visibility.Collapsed;
+            datosDialogo.IsEnabled = true;
+            txCodigo.IsEnabled = true;
+            juegosListView.IsEnabled = true;
+        }
+
+        public void E01MostarJuego()
+        {
+            btnCancelar.Visibility = Visibility.Visible;
+            btnModificar.Visibility = Visibility.Visible;
+            btnCrear.Visibility = Visibility.Collapsed;
+            btnAceptar.Visibility = Visibility.Collapsed;
+            datosDialogo.IsEnabled = false;
+            txCodigo.IsEnabled = false;
+            juegosListView.IsEnabled = true;
+
+
+        }
+
+        public void E02EditarJuego()
+        {
+            btnCancelar.Visibility = Visibility.Visible;
+            btnModificar.Visibility = Visibility.Collapsed;
+            btnCrear.Visibility = Visibility.Collapsed;
+            btnAceptar.Visibility = Visibility.Visible;
+            datosDialogo.IsEnabled = true;
+            txCodigo.IsEnabled = false;
+            juegosListView.IsEnabled = false;
+        }
+
+        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            E02EditarJuego();
         }
     }
 }

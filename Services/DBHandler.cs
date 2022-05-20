@@ -12,7 +12,7 @@ namespace ProyectoJuegos.Services
 {
     internal class DBHandler
     {
-        public static async void InsertarJuego(JuegoModel Juego)
+        public static async Task<bool> InsertarJuego(JuegoModel Juego)
         {
             
             RequestModel requestModel = new RequestModel();
@@ -20,10 +20,20 @@ namespace ProyectoJuegos.Services
             requestModel.route = "/juegos";
             requestModel.data = Juego;
             ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
-            if (responseModel.resultOk)
-            {
-                MessageBox.Show((string)responseModel.data);
-            }
+            
+            return await Task.FromResult(responseModel.resultOk);
+        }
+
+        public static async Task<bool> ModificarJuego(JuegoModel Juego)
+        {
+
+            RequestModel requestModel = new RequestModel();
+            requestModel.method = "PUT";
+            requestModel.route = "/juegos";
+            requestModel.data = Juego;
+            ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+
+            return await Task.FromResult(responseModel.resultOk);
         }
 
 

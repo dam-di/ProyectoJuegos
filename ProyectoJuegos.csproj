@@ -77,8 +77,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ActualizarJuegoCommand.cs" />
+    <Compile Include="Commands\CancelarCommand.cs" />
     <Compile Include="Commands\CargarJuegosCommand.cs" />
     <Compile Include="Commands\CrearJuegoCommand.cs" />
+    <Compile Include="Commands\LoadJuegoCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Models\JuegoModel.cs" />
     <Compile Include="Models\RequestModel.cs" />

@@ -7,20 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProyectoJuegos.Models
 {
-    public class JuegoModel
+    public class JuegoModel:ICloneable
     {
-        public int _id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-
-            }
-        }
+        public int _id { get; set; }
         public string Nombre { get; set; }    
         public string Descripcion { get; set; }
         public double Precio { get; set; }
@@ -34,6 +23,15 @@ namespace ProyectoJuegos.Models
         public JuegoModel()
         {
             Proveedores = new ObservableCollection<string>();
+            FechaLanzamiento = DateTime.Now;
+            Color = "Rojo";
+            Materiales = "Metal";
+
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }
