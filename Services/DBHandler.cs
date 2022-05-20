@@ -37,6 +37,20 @@ namespace ProyectoJuegos.Services
         }
 
 
+        public static async Task<ResponseModel> EliminarJuego(JuegoModel Juego)
+        {
+
+            RequestModel requestModel = new RequestModel();
+            requestModel.method = "DELETE";
+            requestModel.route = "/juegos";
+            requestModel.data = Juego._id;
+            ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+
+            return await Task.FromResult(responseModel);
+        }
+
+
+
         public static async Task<ObservableCollection<JuegoModel>> ObtenerJuegos(string _idJ)
         {
             ObservableCollection<JuegoModel> listaJuegos = new ObservableCollection<JuegoModel>();

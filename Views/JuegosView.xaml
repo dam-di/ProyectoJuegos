@@ -44,7 +44,9 @@
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btnCrear"  Content="CREAR" Width="200" Margin="5,10" Command="{Binding CrearJuegoCommand}"/>
-                <Button x:Name="btnModificar" Content="MODIFICAR" Width="200" Margin="5,10" Command="{Binding ModificarJuegoCommand}" Click="btnModificar_Click"/>
+                <Button x:Name="btnModificar" Content="MODIFICAR" Width="200" 
+                        Margin="5,10" Command="{Binding ModificarJuegoCommand}" 
+                        Click="btnModificar_Click"/>
                 <Button x:Name="btnCancelar" 
                         Content="CANCELAR" 
                         Width="200" 

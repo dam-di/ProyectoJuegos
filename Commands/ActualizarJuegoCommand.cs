@@ -31,6 +31,7 @@ namespace ProyectoJuegos.Commands
                     MessageBox.Show("Juego actualizado correctamente");
                     JuegosViewModel.CargarJuegosCommand.Execute("");
                     vista.E00Inicial();
+                    JuegosViewModel.Juego = new Models.JuegoModel();
                     
                 }
                 

@@ -22,10 +22,15 @@ namespace ProyectoJuegos.Commands
         {
             if (parameter is JuegosView)
             {
-                JuegosView vista = (JuegosView)parameter;
-                JuegosViewModel.Juego = (Models.JuegoModel)JuegosViewModel.JuegoCurrent.Clone();
+                if(JuegosViewModel.JuegoCurrent != null)
+                {
+                    JuegosView vista = (JuegosView)parameter;
+                    JuegosViewModel.Juego = (Models.JuegoModel)JuegosViewModel.JuegoCurrent.Clone();
+                    vista.E01MostarJuego();
+                }
                 
-                vista.E01MostarJuego();
+                
+                
             }
             
         }

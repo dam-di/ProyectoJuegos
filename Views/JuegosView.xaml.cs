@@ -26,6 +26,8 @@ namespace ProyectoJuegos.Views
             E00Inicial();
         }
 
+
+
         public void E00Inicial()
         {
             btnCancelar.Visibility = Visibility.Collapsed;
@@ -35,6 +37,7 @@ namespace ProyectoJuegos.Views
             datosDialogo.IsEnabled = true;
             txCodigo.IsEnabled = true;
             juegosListView.IsEnabled = true;
+            juegosListView.SelectedIndex = 0;
         }
 
         public void E01MostarJuego()
