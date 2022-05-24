@@ -13,7 +13,39 @@ namespace ProyectoJuegos.ViewModels
     class JuegosViewModel:ViewModelBase
     {
         public JuegoModel JuegoCurrent { get; set; }
-       
+        
+        
+
+        private ObservableCollection<ProveedorModel> listaProveedores { get; set; }
+        public ObservableCollection<ProveedorModel> ListaProveedores
+        {
+            get
+            {
+                return listaProveedores;
+            }
+            set
+            {
+                listaProveedores = value;
+                OnPropertyChanged(nameof(ListaProveedores));
+            }
+
+        }
+
+        private ProveedorModel currentProveedor { get; set; }
+        public ProveedorModel CurrentProveedor
+        {
+            get
+            {
+                return currentProveedor;
+            }
+            set
+            {
+                currentProveedor = value;
+                OnPropertyChanged(nameof(CurrentProveedor));
+            }
+        }
+
+
 
         private JuegoModel juego { get; set; }
         public JuegoModel Juego { 
@@ -31,7 +63,9 @@ namespace ProyectoJuegos.ViewModels
         public ICommand LoadJuegoCommand { get; set; }
         public ICommand CancelarCommand { get; set; }
         public ICommand ActualizarJuegoCommand { get; set; }
-
+        public ICommand CargarProveedoresCommand { get; set; }
+        public ICommand ModificarJuegoCommand { get; set; }
+        public ICommand AddPToProductCommand { get; set; }
         private ObservableCollection<JuegoModel> listajuegos { get; set; }
         public ObservableCollection<JuegoModel> ListaJuegos 
         {
@@ -42,13 +76,14 @@ namespace ProyectoJuegos.ViewModels
             set
             { 
                 listajuegos = value;
-                OnPropertyChanged(nameof(listajuegos));
+                OnPropertyChanged(nameof(ListaJuegos));
             }
                 
-            }
+        }
         
         public JuegosViewModel()
         {
+            ListaProveedores = new ObservableCollection<ProveedorModel>();
             Juego = new JuegoModel();
             JuegoCurrent = new JuegoModel();
             CrearJuegoCommand = new CrearJuegoCommand(this);
@@ -57,6 +92,10 @@ namespace ProyectoJuegos.ViewModels
             LoadJuegoCommand = new LoadJuegoCommand(this);
             CancelarCommand = new CancelarCommand(this);
             ActualizarJuegoCommand = new ActualizarJuegoCommand(this);
+            CargarProveedoresCommand = new CargarProveedoresCommand(this);
+            ModificarJuegoCommand = new ModificarJuegoCommand(this);
+            AddPToProductCommand = new AddPToProductCommand(this);
+
         }
     }
 }

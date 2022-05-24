@@ -16,13 +16,13 @@ namespace ProyectoJuegos.Models
         public int Stock { get; set; }
         public string Color { get; set; }
         public string Materiales { get; set; }
-        public ObservableCollection<string> Proveedores { get; set; }
+        public ObservableCollection<ProveedorModel> Proveedores { get; set; }
         public DateTime FechaLanzamiento { get; set; }
 
         
         public JuegoModel()
         {
-            Proveedores = new ObservableCollection<string>();
+            Proveedores = new ObservableCollection<ProveedorModel>();
             FechaLanzamiento = DateTime.Now;
             Color = "Rojo";
             Materiales = "Metal";

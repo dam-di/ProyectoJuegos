@@ -22,6 +22,7 @@ namespace ProyectoJuegos.Commands
 
         public async void Execute(object parameter)
         {
+            
             bool okinsertar = await DBHandler.InsertarJuego(JuegosViewModel.Juego);
             if (okinsertar)
             {

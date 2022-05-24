@@ -62,13 +62,35 @@ namespace ProyectoJuegos.Services
             if (responseModel.resultOk)
             {
                 listaJuegos = JsonConvert.DeserializeObject<ObservableCollection<JuegoModel>>((string)responseModel.data);
-                MessageBox.Show("CONSULTA OK");
+                //MessageBox.Show("CONSULTA OK");
             }
             else
             {
                 
             }
             return await Task.FromResult(listaJuegos);
+        }
+
+
+
+        public static async Task<ObservableCollection<ProveedorModel>> ObtenerProveedores(string _idP)
+        {
+            ObservableCollection<ProveedorModel> listaProveedores = new ObservableCollection<ProveedorModel>();
+            RequestModel requestModel = new RequestModel();
+            requestModel.method = "GET";
+            requestModel.route = "/proveedores";
+            requestModel.data = _idP;
+            ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+            if (responseModel.resultOk)
+            {
+                listaProveedores = JsonConvert.DeserializeObject<ObservableCollection<ProveedorModel>>((string)responseModel.data);
+                //MessageBox.Show("CONSULTA OK");
+            }
+            else
+            {
+
+            }
+            return await Task.FromResult(listaProveedores);
         }
     }
 }

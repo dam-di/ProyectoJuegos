@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ProyectoJuegos.Views"
              mc:Ignorable="d" 
              x:Name="vistajuegos"
@@ -12,6 +13,7 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding CargarJuegosCommand}"/>
+            <i:InvokeCommandAction Command="{Binding CargarProveedoresCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -24,8 +26,33 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+        
         </Grid.RowDefinitions>
-        <StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Background="AliceBlue">
+
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Background="Gray">
+            <StackPanel>
+                <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Width="200" Text="{Binding CurrentProveedor.Nombre}" HorizontalAlignment="Center"/>
+                <TextBlock Text="Direccion" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Width="200" Text="{Binding CurrentProveedor.Direccion}" HorizontalAlignment="Center"/>
+                <TextBlock Text="Correo" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Width="200" Text="{Binding CurrentProveedor.Correo}" HorizontalAlignment="Center"/>
+                <TextBlock Text="Poblacion" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Width="200" Text="{Binding CurrentProveedor.Poblacion}" HorizontalAlignment="Center"/>
+                
+                <TextBlock Text="Telefono" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Width="200" Text="{Binding CurrentProveedor.Tlefono}" HorizontalAlignment="Center"/>
+                <TextBlock Text="NIF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding CurrentProveedor._id}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+
+
+
+
+            <StackPanel Grid.RowSpan="2" VerticalAlignment="Center" Background="AliceBlue">
             <StackPanel x:Name="datosDialogo">
                 <TextBlock Text="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Width="200" Text="{Binding Juego.Nombre}"/>
@@ -39,6 +66,47 @@
                 <DatePicker Width="200" SelectedDate="{Binding Juego.FechaLanzamiento}"/>
                 <TextBlock Text="CODIGO" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox x:Name="txCodigo" Width="200" Text="{Binding Juego._id}"/>
+                <TextBlock Text="PROVEEDOR" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    
+                    <ComboBox Width="200" ItemsSource="{Binding Juego.Proveedores}" SelectedItem="{Binding CurrentProveedor}"/>
+                    
+                    <materialDesign:DialogHost x:Name="dialogProveedores" DialogTheme="Light">
+                        <materialDesign:DialogHost.DialogContent>
+                            <StackPanel Margin="16">
+                                <TextBlock Text="Selecciona un proveedor" />
+
+                                <ComboBox x:Name="cmbListaProveedores"
+                                      Margin="10,0"
+                                      VerticalAlignment="Center" 
+                                      FontSize="18" FontWeight="SemiBold" 
+                                      Cursor="Hand"
+                                      SelectedItem="{Binding CurrentProveedor}"
+                                      VerticalContentAlignment="Top"
+                                      ItemsSource="{Binding ListaProveedores}"/>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True" Margin="0,8,8,0" Content="ACEPTAR"
+                                        Command="{Binding AddPToProductCommand}" 
+                                        CommandParameter="{Binding ElementName=dialogProveedores}">
+
+                                    </Button>
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True"
+                                        Margin="0,8,8,0" Content="CANCELAR"
+                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:DialogHost.DialogContent>
+
+                        <Button x:Name="btnNuevoProveedor" 
+                              Content="{materialDesign:PackIcon Kind=PlaylistAdd, Size=21}"
+                              Style="{StaticResource MaterialDesignFlatButton}"
+                              Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"/>
+                    </materialDesign:DialogHost>
+                </StackPanel>
+                
             </StackPanel>
             
             
@@ -85,5 +153,9 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
+
+        
+
+
     </Grid>
 </UserControl>

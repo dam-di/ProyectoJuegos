@@ -26,6 +26,7 @@ namespace ProyectoJuegos.Commands
                 JuegosView view = (JuegosView)parameter;
                 view.E00Inicial();
                 JuegosViewModel.Juego = new JuegoModel();
+                JuegosViewModel.CargarProveedoresCommand.Execute("");
             }
         }
 
