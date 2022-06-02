@@ -13,6 +13,7 @@ namespace ProyectoJuegos.Commands
     {
         public event EventHandler CanExecuteChanged;
         public JuegosViewModel juegosViewModel { get; set; }
+        public FacturaViewModel FacturaViewModel { get; set; }
         public bool CanExecute(object parameter)
         {
             return true;
@@ -20,13 +21,27 @@ namespace ProyectoJuegos.Commands
 
         public async void Execute(object parameter)
         {
+            if (FacturaViewModel != null)
+            {
+                FacturaViewModel.ListaJuegos = await DBHandler.ObtenerJuegos("all");
+            }
+            else
+            {
+                juegosViewModel.ListaJuegos = await DBHandler.ObtenerJuegos("all");
 
-            juegosViewModel.ListaJuegos = await DBHandler.ObtenerJuegos("all");
+            }
         }
 
         public CargarJuegosCommand(JuegosViewModel juegosViewModel)
         {
             this.juegosViewModel = juegosViewModel;
         }
+
+        public CargarJuegosCommand(FacturaViewModel FacturaViewModel)
+        {
+            this.FacturaViewModel = FacturaViewModel;
+        }
+
+
     }
 }

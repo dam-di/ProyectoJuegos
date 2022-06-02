@@ -14,8 +14,6 @@ namespace ProyectoJuegos.ViewModels
     {
         public JuegoModel JuegoCurrent { get; set; }
         
-        
-
         private ObservableCollection<ProveedorModel> listaProveedores { get; set; }
         public ObservableCollection<ProveedorModel> ListaProveedores
         {
@@ -45,6 +43,7 @@ namespace ProyectoJuegos.ViewModels
             }
         }
 
+       
 
 
         private JuegoModel juego { get; set; }

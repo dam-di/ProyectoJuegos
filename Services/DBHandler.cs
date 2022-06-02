@@ -59,8 +59,11 @@ namespace ProyectoJuegos.Services
             requestModel.route = "/juegos";
             requestModel.data = _idJ;
             ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+            Console.WriteLine(responseModel.data);
+            Console.WriteLine(responseModel.resultOk);
             if (responseModel.resultOk)
             {
+                
                 listaJuegos = JsonConvert.DeserializeObject<ObservableCollection<JuegoModel>>((string)responseModel.data);
                 //MessageBox.Show("CONSULTA OK");
             }

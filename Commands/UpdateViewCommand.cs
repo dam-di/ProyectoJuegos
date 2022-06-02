@@ -33,6 +33,14 @@ namespace ProyectoJuegos.Commands
                 {
                     mainViewModel.SelectedViewModel = new JuegosViewModel();
                 }
+                else if (viewName.Equals("factura"))
+                {
+                    mainViewModel.SelectedViewModel = new FacturaViewModel();
+                }
+                else if (viewName.Equals("consultas"))
+                {
+                    mainViewModel.SelectedViewModel = new ConsultasViewModel();
+                }
             }
         }
 

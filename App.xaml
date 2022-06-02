@@ -26,6 +26,19 @@
             <DataTemplate DataType="{x:Type viewmodels:JuegosViewModel}">
                 <views:JuegosView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:FacturaViewModel}">
+                <views:FacturaView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ConsultasViewModel}">
+                <views:ConsultasView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ReportViewModel}">
+                <views:ReportView/>
+            </DataTemplate>
+
         </ResourceDictionary>
         
     </Application.Resources>

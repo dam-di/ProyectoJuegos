@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="ProyectoJuegos.Views.FacturaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ProyectoJuegos.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="800">
+
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding CargarJuegosCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <TextBlock Text="FACTURAS" HorizontalAlignment="Center" FontSize="20" FontWeight="Black"/>
+            <DatePicker SelectedDate="{Binding Factura.FechaFactura}" Width="200" materialDesign:HintAssist.Hint="Fecha factura"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock Text="CLIENTES" HorizontalAlignment="Center" FontSize="12" FontWeight="Black"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Width="200" materialDesign:HintAssist.Hint="Indica un cliente"
+                      ItemsSource="{Binding ListaClientes}" SelectedItem="{Binding Factura.Cliente}"/>
+                <Button Content="AÑADIR" Margin="10"/>
+            </StackPanel>
+            
+
+        </StackPanel>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+            <TextBlock Text="JUEGOS" HorizontalAlignment="Center" FontSize="12" FontWeight="Black"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Elige un Juego: " VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding ListaJuegos}" SelectedItem="{Binding SelectedJuego}" Width="200"/>
+                <TextBox Text="{Binding Cantidad}" Width="60" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Cantidad"/>
+                <Button Content="AÑADIR" Margin="10" Command="{Binding AddJuegoFacturaCommand}" Cursor="Hand"/>
+            </StackPanel>
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center">
+            <ListView x:Name="juegosListView" ItemsSource="{Binding Factura.ListaJuegos}" MaxHeight="400"
+                      >
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="REF" DisplayMemberBinding="{Binding Path=JuegoModel._id}"/>
+                        <GridViewColumn Header="NOMBRE" DisplayMemberBinding="{Binding Path=JuegoModel.Nombre}"/>
+                        <GridViewColumn Header="DESCRIPCION" DisplayMemberBinding="{Binding Path=JuegoModel.Descripcion}"/>
+                        <GridViewColumn Header="PRECIO" DisplayMemberBinding="{Binding Path=JuegoModel.Precio}"/>
+                        <GridViewColumn Header="CANTIDAD" DisplayMemberBinding="{Binding Path=Cantidad}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center">
+            <Button Content="CREAR FACTURA" Margin="10"
+                    Command="{Binding CrearFacturaCommand}"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

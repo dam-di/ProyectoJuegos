@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoJuegos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="750" Width="900">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Content="HOME" Command="{Binding UpdateViewCommand}" CommandParameter="home"/>
             <Button Content="RESUMEN" Command="{Binding UpdateViewCommand}" CommandParameter="resumen"/>
-            <Button Content="JUEGOS" Command="{Binding UpdateViewCommand}" CommandParameter="juegos"/>
+            <Button Content="JUEGOS" Command="{Binding UpdateViewCommand}" CommandParameter="juegos" />
+            <Button Content="FACTURAS" Command="{Binding UpdateViewCommand}" CommandParameter="factura" Cursor="Hand" />
+            <Button Content="CONSULTAS" Command="{Binding UpdateViewCommand}" CommandParameter="consultas" Cursor="Hand" />
+
         </StackPanel>
         <ContentControl Content="{Binding SelectedViewModel}"/>
     </StackPanel>

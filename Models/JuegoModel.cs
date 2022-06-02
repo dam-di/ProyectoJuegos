@@ -12,7 +12,7 @@ namespace ProyectoJuegos.Models
         public int _id { get; set; }
         public string Nombre { get; set; }    
         public string Descripcion { get; set; }
-        public double Precio { get; set; }
+        public decimal Precio { get; set; }
         public int Stock { get; set; }
         public string Color { get; set; }
         public string Materiales { get; set; }
@@ -32,6 +32,11 @@ namespace ProyectoJuegos.Models
         public object Clone()
         {
             return MemberwiseClone();
+        }
+
+        public override string ToString()
+        {
+            return Nombre;
         }
     }
 }
