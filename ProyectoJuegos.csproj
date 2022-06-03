@@ -121,6 +121,7 @@
     <Compile Include="Commands\CancelarCommand.cs" />
     <Compile Include="Commands\CargarJuegosCommand.cs" />
     <Compile Include="Commands\CargarProveedoresCommand.cs" />
+    <Compile Include="Commands\ConsultasCommand.cs" />
     <Compile Include="Commands\CrearFacturaCommand.cs" />
     <Compile Include="Commands\CrearJuegoCommand.cs" />
     <Compile Include="Commands\LoadJuegoCommand.cs" />
@@ -230,6 +231,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FacturaDNI.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -250,9 +252,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

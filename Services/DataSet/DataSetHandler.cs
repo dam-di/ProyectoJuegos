@@ -14,6 +14,8 @@ namespace ProyectoJuegos.Services.DataSet
         private static facturaTableAdapter facturaAdapter = new facturaTableAdapter();
         private static detalleTableAdapter detalleAdapter = new detalleTableAdapter();
 
+        private static InformeTableAdapter adapter = new InformeTableAdapter();
+
         public static void CrearFactura(FacturaModel Factura)
         {
             /*
@@ -46,6 +48,11 @@ namespace ProyectoJuegos.Services.DataSet
             }
 
             
+        }
+
+        public static DataTable GetDataByDNI(string dni)
+        {
+            return adapter.GetDataByDNI(dni);
         }
 
     }

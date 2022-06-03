@@ -3803,7 +3803,7 @@ SELECT idFactura, idCliente, fecha, total FROM factura WHERE (idFactura = @idFac
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        cliente.*, factura.*, detalle.*\r\nFROM            cliente INNER JOIN" +
@@ -3811,6 +3811,28 @@ SELECT idFactura, idCliente, fecha, total FROM factura WHERE (idFactura = @idFac
                 "R JOIN\r\n                         detalle ON factura.idFactura = detalle.idFactur" +
                 "a";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        cliente.*, factura.*, detalle.*
+FROM            cliente INNER JOIN
+                         factura ON cliente.idCliente = factura.idCliente INNER JOIN
+                         detalle ON factura.idFactura = detalle.idFactura
+
+WHERE cliente.idCliente = @dni";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dni", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "idCliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT        cliente.*, factura.*, detalle.*
+FROM            cliente INNER JOIN
+                         factura ON cliente.idCliente = factura.idCliente INNER JOIN
+                         detalle ON factura.idFactura = detalle.idFactura
+WHERE (factura.fecha BETWEEN @fecha1 AND @fecha2) AND cliente.idCliente = @dni
+";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha1", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha2", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dni", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "idCliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3832,6 +3854,52 @@ SELECT idFactura, idCliente, fecha, total FROM factura WHERE (idFactura = @idFac
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual _2damXXDataSet.InformeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            _2damXXDataSet.InformeDataTable dataTable = new _2damXXDataSet.InformeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual _2damXXDataSet.InformeDataTable GetDataByDNI(string dni) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((dni == null)) {
+                throw new global::System.ArgumentNullException("dni");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(dni));
+            }
+            _2damXXDataSet.InformeDataTable dataTable = new _2damXXDataSet.InformeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual _2damXXDataSet.InformeDataTable GetDataByFechasDNI(string fecha1, string fecha2, string dni) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((fecha1 == null)) {
+                throw new global::System.ArgumentNullException("fecha1");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(fecha1));
+            }
+            if ((fecha2 == null)) {
+                throw new global::System.ArgumentNullException("fecha2");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(fecha2));
+            }
+            if ((dni == null)) {
+                throw new global::System.ArgumentNullException("dni");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(dni));
+            }
             _2damXXDataSet.InformeDataTable dataTable = new _2damXXDataSet.InformeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
